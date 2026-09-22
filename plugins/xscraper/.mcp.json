@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "xscraper": {
+      "type": "http",
+      "url": "https://mcp.xscraper.online/mcp",
+      "headers": { "x-api-key": "${XSCRAPER_API_KEY}" }
+    }
+  }
+}
