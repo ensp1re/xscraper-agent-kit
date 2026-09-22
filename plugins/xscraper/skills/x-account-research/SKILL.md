@@ -19,7 +19,7 @@ Goal: a brief the user can act on, built from a few cheap calls. Every call cost
 
 ## Signals worth reporting
 
-- Account age, follower/following ratio, posting rate (posts per day over the fetched window).
+- Account age, follower/following ratio, posting rate (posts per day over the fetched window; leave out a post marked `pinned`, it can be years old).
 - Verification type and affiliation (a business badge or an organization label).
 - Topics they post about most, and their tone.
 - Engagement relative to followers: views and likes per post vs follower count. Very low engagement on a large account, or a burst of new followers, can mean bought followers; say "possible", not "certain".

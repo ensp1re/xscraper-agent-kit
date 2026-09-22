@@ -21,7 +21,7 @@ xscraper returns public X (Twitter) data as JSON. Every call costs tokens from t
 | Who is this account? | `x_get_user` | `recent: tweets` adds their latest posts in the same call. |
 | What did they post recently? | `x_get_user` with `recent: tweets` | Older posts: `x_search_tweets` with `from:user until:DATE`. For several accounts at once, one search `(from:a OR from:b) since:DATE` is cheaper than one call per account. |
 | What does this tweet say / how did people react? | `x_get_tweet` | `include: replies` or `quotes` adds one page of reactions. Accepts a tweet URL. |
-| Who follows them / who do they follow? | `x_get_followers` | Pass `user_id` when you have it; a username costs one extra lookup. |
+| Who follows them / who do they follow? | `x_get_followers` | One page of about 50–70 accounts per call, with no count; page with the cursor. Pass `user_id` when you have it; a username costs one extra lookup. |
 | What do they like? | `x_get_user_likes` | Often private or empty. |
 | Posts from a curated list | `x_get_list_tweets` | List ID is the number in x.com/i/lists/ID. |
 | Find accounts in a niche | `x_search_users` | Matches names and bios. |
@@ -40,12 +40,12 @@ Narrow the query before paging: `min_faves:` and `-filter:replies` cut noise mor
 - Page with the returned cursor only when the answer is not there yet. Stop when a page adds nothing new.
 - Before a task that needs more than about 50 tokens (for example, several searches plus many pages), give the user the estimate and ask. Use the prices in the tool descriptions or `references/endpoints.md`.
 - If a result shows a low balance, or a call returns 402, stop and tell the user the balance and what the rest would cost. Do not retry a 402.
-- A 404 is charged: check the username (no @) or ID before retrying. 429 and 503 are not charged; wait the given seconds and retry once.
+- A 404 is charged: check the username (no @) or ID before retrying. A missing tweet is not a 404 but an empty answer, and is charged too. 429 and 503 are not charged; wait the given seconds and retry once.
 - Say what the task cost at the end (sum the `cost:` lines).
 
 ## Reading results
 
-Concise output is one line per item: `ID · @author · date · text · likes rts replies views · URL` for posts, `ID · @handle · name · followers following · bio` for accounts. Keep IDs; later calls take them. Ask for `response_format: detailed` only when you need fields the line lacks (media, links, full author, quoted post fields), because detailed output is several times longer.
+Concise output is one line per item: `ID · @author · date · text · likes rts replies views · URL` for posts, `ID · @handle · name · followers following · bio` for accounts. A retweet shows `RT @original: <text>` with the original post's counts and URL; a pinned post is marked `pinned` and can be much older than the posts after it. `?` means X did not return that value. Keep IDs; later calls take them. Ask for `response_format: detailed` only when you need fields the line lacks (media, links, full author, quoted post fields), because detailed output is several times longer.
 
 When you report to the user, cite posts by URL, give numbers as of the fetch time, and say when a sample is small (one page is about 20 posts, not all of X).
 

@@ -3,7 +3,7 @@
   "name": "online.xscraper/x-data",
   "title": "xscraper",
   "description": "Read public X (Twitter) data: search posts, profiles, followers, likes, lists and trends. Pay per call in tokens.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "websiteUrl": "https://xscraper.online/docs#agents",
   "remotes": [
     {
@@ -23,7 +23,7 @@
     {
       "registryType": "npm",
       "identifier": "xscraper-mcp",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "transport": {
         "type": "stdio"
       },

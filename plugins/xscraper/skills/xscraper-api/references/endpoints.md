@@ -41,7 +41,9 @@ Every billed response has `x-tokens-cost` and `x-tokens-remaining` headers (use 
 | 400 | a parameter is missing or invalid; the message names it | no |
 | 401 | missing, unknown or revoked key | no |
 | 402 | balance lower than the call's price; the message gives both | no |
-| 404 | user, tweet or list does not exist or is not visible | yes |
+| 404 | user or list does not exist or is not visible | yes |
 | 429 | more than the per-minute limit, or too many calls at once; wait `Retry-After` seconds | no |
 | 503 | scraper pool busy; wait `Retry-After` seconds | no |
 | other 5xx | upstream failure; safe to retry once | no (refunded) |
+
+A tweet that does not exist or is not visible is not a 404: `tweet` answers 200 with `data: null` and is charged.
