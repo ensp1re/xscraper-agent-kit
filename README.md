@@ -87,6 +87,25 @@ For the skills, zip a skill folder and upload it in Settings â†’ Capabilities â†
 
 Prices per call are in `plugins/xscraper/skills/xscraper-api/references/endpoints.md` and at https://xscraper.online/docs. Errors are refunded except 404 (not found). The skills tell the agent to start with one page, estimate before larger tasks, and ask before spending more than about 50 tokens.
 
+## Changelog
+
+The npm package is [`xscraper-mcp`](https://www.npmjs.com/package/xscraper-mcp). `npx -y xscraper-mcp` runs the latest version; the hosted server is always current.
+
+### 1.0.2 (2026-09-26)
+
+- Search now goes past page 4. A cursor may be up to 8,000 characters (was 1,000): X's cursors for top, photo and video search grow about 285 characters a page. Latest-mode cursors from the API now stay about 430 characters.
+
+### 1.0.1 (2026-09-23)
+
+- Concise output marks pinned posts, shows a retweet as the original post with its counts, and prints `?` for unknown values.
+- The hosted server rejects malformed keys with 401.
+- `x_get_followers` returns one page (about 50 to 70 accounts); an empty replies or quotes page ends paging; paged calls get more time per page.
+- Package metadata for the MCP registry.
+
+### 1.0.0 (2026-09-23)
+
+- First release: 9 read-only tools, over stdio (npm) and HTTP (hosted).
+
 ## Source
 
 This repository is generated from the xscraper monorepo, where the skills are tested against the live price catalog. Report problems in the issues here or at support@xscraper.online.

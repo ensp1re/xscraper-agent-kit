@@ -2,7 +2,7 @@
   "name": "xscraper",
   "displayName": "xscraper",
   "description": "X (Twitter) data for agents: the xscraper MCP server plus skills for account research, topic research, thread digests and monitoring.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": { "name": "xscraper", "email": "support@xscraper.online", "url": "https://xscraper.online" },
   "homepage": "https://xscraper.online/docs#agents",
   "keywords": ["x", "twitter", "social", "research", "monitoring", "mcp"]
